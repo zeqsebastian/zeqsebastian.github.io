@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+hr {
+    width: 500px;
+}
+#title{
+    font-size: 24px;
+    font-weight: bold;
+    color: green;
+}
+#errors {
+    color: #971B2F;
+}
+
+#timer {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6fb055;
+}
+
+#success-message {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6fb055;
+    display: none;
+}
+
+#board {
+    width: 450px;
+    height: 450px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile {
+    width: 48px; 
+    height: 48px;
+    border: 1px solid #D5E9D1;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#digits {
+    width: 450px;
+    height: 50px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.number {
+    width: 44px; 
+    height: 44px;
+    border: 1px solid #575756;
+    margin: 2px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.number-selected {
+    background-color: #6fb055;
+}
+
+.tile-start {
+    background-color: whitesmoke;
+}
+
+.horizontal-line {
+    border-bottom: 1px solid darkgreen;
+}
+
+.vertical-line {
+    border-right: 1px solid darkgreen;
+}
