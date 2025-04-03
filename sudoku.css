@@ -1,18 +1,24 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 hr {
-    width: 500px;
+    width: 90%;
+    max-width: 500px;
 }
-#title{
+
+#title {
     font-size: 24px;
     font-weight: bold;
     color: green;
 }
+
 #errors {
     color: #971B2F;
+    font-size: 18px;
 }
 
 #timer {
@@ -30,56 +36,90 @@ hr {
 }
 
 #board {
-    width: 450px;
-    height: 450px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    width: 90vw; /* Skalierung für mobile Geräte */
+    max-width: 450px; /* Maximale Breite für große Bildschirme */
+    aspect-ratio: 1; /* Quadratisches Layout beibehalten */
+    gap: 1px;
+    background-color: #D5E9D1;
+    margin: 10px auto;
 }
 
 .tile {
-    width: 48px; 
-    height: 48px;
-    border: 1px solid #D5E9D1;
-    font-size: 20px;
-    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: calc(1.5vw + 8px); /* Dynamische Schriftgröße */
+    font-weight: bold;
+    border: 1px solid #575756;
+    background-color: white;
+}
+
+.tile-start {
+    background-color: #f2f2f2;
 }
 
 #digits {
-    width: 450px;
-    height: 50px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr); /* 9 Zahlen in einer Zeile */
+    gap: 5px;
+    width: 90vw;
+    max-width: 450px;
+    margin: 10px auto;
 }
 
 .number {
-    width: 44px; 
-    height: 44px;
-    border: 1px solid #575756;
-    margin: 2px;
-    font-size: 20px;
-    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: calc(1.5vw + 8px);
+    font-weight: bold;
+    border: 1px solid #575756;
+    cursor: pointer;
+    background-color: white;
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+/* ✅ Anpassung für Handys: Zahlen in 2 Reihen */
+@media (max-width: 600px) {
+    #digits {
+        grid-template-columns: repeat(5, 1fr); /* 5 Zahlen pro Zeile */
+    }
 }
 
 .number-selected {
     background-color: #6fb055;
+    color: white;
 }
 
-.tile-start {
-    background-color: whitesmoke;
+/* ✅ Linien für das Sudoku-Grid */
+.tile:nth-child(3n) {
+    border-right: 2px solid darkgreen;
 }
 
-.horizontal-line {
-    border-bottom: 1px solid darkgreen;
+.tile:nth-child(n+19):nth-child(-n+27),
+.tile:nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 2px solid darkgreen;
 }
 
-.vertical-line {
-    border-right: 1px solid darkgreen;
+/* ✅ Anpassung für Handys */
+@media (max-width: 600px) {
+    #board {
+        width: 95vw;
+        max-width: 400px;
+    }
+    .tile {
+        font-size: calc(3vw + 8px);
+    }
+    #digits {
+        width: 95vw;
+    }
+    .number {
+        width: 12%;
+        max-width: 40px;
+        font-size: calc(2vw + 8px);
+    }
 }
