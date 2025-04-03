@@ -7,7 +7,7 @@ var game;
 var test = false;
 var gameBoards = [];
 var solutionBoards = [];
-
+var timerElement;
 var board1 = [
     "--74916-5",
     "2---6-3-9",
@@ -65,9 +65,11 @@ var board = gameBoards[randomIndex];
 var solution = solutionBoards[randomIndex];
 
 window.onload = function() {
+    timerElement = document.getElementById("timer");
+    timerElement.innerText = "5:00"; // Timer von Anfang an anzeigen
+    document.getElementById("errors").innerText = "0/5 Fehlern";
     setGame();
-    game=true;
-    
+    game = true;
 };
 
 function setGame() {
@@ -80,6 +82,12 @@ function setGame() {
         document.getElementById("digits").appendChild(number);
     }
 
+    let boardElement = document.getElementById("board");
+    boardElement.style.width = "90vw";
+    boardElement.style.height = "90vw";
+    boardElement.style.maxWidth = "450px";
+    boardElement.style.maxHeight = "450px";
+    
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
             let tile = document.createElement("div");
@@ -96,7 +104,7 @@ function setGame() {
             }
             tile.addEventListener("click", selectTile);
             tile.classList.add("tile");
-            document.getElementById("board").append(tile);
+            boardElement.append(tile);
         }
     }
 }
@@ -108,45 +116,47 @@ function selectNumber(){
         }
         numSelected = this;
         numSelected.classList.add("number-selected");
-}}
+    }
+}
 
 function selectTile() {
     if (numSelected) {
         if (this.innerText != "") {
             return;
         }
-        if(errors>=5){
+        if(errors >= 5){
             clearInterval(timerInterval);
             alert("Zu viele Fehler");
             return;
         }
-        if(timeLeft<=0 && test!=false){
-            
+        if(timeLeft <= 0 && test != false){
             return;
         }
-
+        
         let coords = this.id.split("-");
         let r = parseInt(coords[0]);
         let c = parseInt(coords[1]);
-        startTimer();
+        
+        if (!timerInterval) {
+            startTimer();
+        }
+        
         if (solution[r][c] == numSelected.id) {
             this.innerText = numSelected.id;
             checkWin();
         } else {
             errors += 1;
-            document.getElementById("errors").innerText = errors;
+            document.getElementById("errors").innerText = `${errors}/5 Fehlern`;
         }
     }
-
 }
 
 function startTimer() {
-    var timerElement = document.getElementById("timer");
     if (timerInterval) {
         clearInterval(timerInterval);
     }
     timerInterval = setInterval(function() {
-        test=true;
+        test = true;
 
         if (timeLeft > 0) {
             let minutes = Math.floor(timeLeft / 60);
