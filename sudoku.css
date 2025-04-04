@@ -88,7 +88,7 @@ hr {
         grid-template-columns: repeat(5, 1fr); 
     }
     .number {
-        font-size: calc(3vw + 10px); 
+        font-size: calc(5vw + 15px); 
         padding: 15px; 
     }
 }
