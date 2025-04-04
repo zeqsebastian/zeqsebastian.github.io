@@ -74,7 +74,7 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: calc(1.5vw + 8px);
+    font-size: calc(2vw + 10px);
     font-weight: bold;
     border: 1px solid #575756;
     cursor: pointer;
@@ -86,6 +86,10 @@ hr {
 @media (max-width: 600px) {
     #digits {
         grid-template-columns: repeat(5, 1fr); 
+    }
+    .number {
+        font-size: calc(3vw + 10px); 
+        padding: 15px; 
     }
 }
 
