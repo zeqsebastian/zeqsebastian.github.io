@@ -32,7 +32,7 @@ var solution1 = [
     "812945763"
 ];
 
-// Funktion zum Rotieren eines Boards (90 Grad im Uhrzeigersinn)
+
 function rotate(board1) {
     const size = board1.length;
     const rotated = Array.from({ length: size }, () => "");
@@ -45,11 +45,11 @@ function rotate(board1) {
     return rotated;
 }
 
-// Originale Boards hinzufügen
+
 gameBoards.push(board1);
 solutionBoards.push(solution1);
 
-// Rotationen hinzufügen
+
 let rotatedGame = board1;
 let rotatedSolution = solution1;
 for (let i = 0; i < 3; i++) {
@@ -59,7 +59,7 @@ for (let i = 0; i < 3; i++) {
     solutionBoards.push(rotatedSolution);
 }
 
-// Zufällige Auswahl einer der 4 Varianten
+
 const randomIndex = Math.floor(Math.random() * 4);
 var board = gameBoards[randomIndex];
 var solution = solutionBoards[randomIndex];
